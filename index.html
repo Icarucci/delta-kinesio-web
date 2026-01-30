@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Delta Kinesiología</title>
+  <link rel="icon" href="assets/logos/favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<!-- WhatsApp Badge -->
+<a href="https://wa.me/5491172388227"
+   class="whatsapp-badge"
+   target="_blank"
+   rel="noopener"
+   aria-label="WhatsApp">
+  <span class="wa-badge-text">Escribinos</span>
+  <span class="wa-badge-icon">
+    <i class="fa-brands fa-whatsapp"></i>
+  </span>
+
+</a>
+<!-- Badge Pilates (mid-screen) -->
+<div class="pilates-badge" id="pilatesBadge" hidden>
+  <a href="#" class="pilates-badge-link">
+    <span class="pilates-badge-icon">
+      <img src="assets/img/camilla-icono.jpg" alt="Pilates Reformer">
+    </span>
+    <span class="pilates-badge-text">
+      <strong>Pilates Reformer</strong>
+      <span>Clases personalizadas</span>
+    </span>
+  </a>
+  <button class="pilates-badge-close" id="pilatesBadgeClose">×</button>
+</div>
+<!-- Panel deslizable Pilates -->
+<div class="slide-panel" id="pilatesPanel" aria-hidden="true">
+  <div class="slide-panel-header">
+    <button class="slide-back" id="closePilates" aria-label="Volver">
+      ← Volver
+    </button>
+  </div>
+
+  <div class="slide-panel-content" id="pilatesPanelContent">
+    <!-- Aquí se carga partials/pilates.html -->
+  </div>
+</div>
+<body>
+<!-- Header -->
+<div id="header-slot"></div>
+
+  <section class="hero" aria-label="Presentación">
+    <!-- Video de fondo -->
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/logos/hero-fallback.jpg">
+      <source src="assets/video-home/video-home.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Overlay para mp4 -->
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-card">
+        <p class="hero-eyebrow">Kinesiología • Rehabilitación • Movimiento</p>
+        <h1 class="hero-title">Tu bienestar en buenas manos</h1>
+        <p class="hero-subtitle">
+          Atención profesional y personalizada. Evaluacion y tratamientos integrales, con objetivos claros y seguimiento real.
+        </p>
+
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5491172388227" target="_blank" rel="noopener">
+                <i class="fa-brands fa-whatsapp"></i>
+                Reserva tu Turno
+            </a>
+            <a class="btn btn-ghost" href="#ubicacion">
+                Dónde estamos
+            </a>
+        </div>
+
+        <div class="hero-trust">
+          <div class="trust-item">
+            <span class="dot"></span>
+            <span>Turnos rápidos</span>
+          </div>
+          <div class="trust-item">
+            <span class="dot"></span>
+            <span>Profesionales certificados</span>
+          </div>
+          <div class="trust-item">
+            <span class="dot"></span>
+            <span>Ubicación accesible</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- Redes -->
+    <section id="redes" class="redes-section">
+    <div class="container">
+        <header class="section-header">
+        <h2>Seguinos en redes</h2>
+        </header>
+
+        <div class="redes-circulares">
+        <a href="https://www.instagram.com/deltakinesio/" target="_blank" rel="noopener" class="social-circle ig" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="https://www.facebook.com/profile.php?id=61582978253285&name=xhp_nt__fb__action__open_user" target="_blank" rel="noopener" class="social-circle fb" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="https://wa.me/5491172388227" target="_blank" rel="noopener" class="social-circle wa" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        </div>
+    </div>
+    </section>
+
+    <!-- Obras Sociales -->
+    <section id="obrasSociales" class="obras-section">
+      <div class="container">
+          <header class="section-header">
+          <h2>Obras Sociales & Atención Particular</h2>
+          <p>Trabajamos con las principales coberturas</p>
+          </header>
+        <div class="logos-slider">
+            <div class="logos-track" id="logosTrack">
+            <!-- Logos -->
+            <img src="assets/obras-sociales/osde.png" alt="OSDE">
+            <img src="assets/obras-sociales/swiss.png" alt="Swiss Medical">
+            <img src="assets/obras-sociales/william.png" alt="William Hope">
+            <img src="assets/obras-sociales/medife.png" alt="Medife">
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="servicios-iconos-section">
+      <div id="servicios-slot"></div>
+    </section>
+    
+    <!-- Opiniones-->
+    <section id="opiniones" class="opiniones-section">
+    <div id="opiniones-slot"></div>
+    </section>
+
+    <!-- Novedades -->
+    <section id="novedades" class="novedades-section">
+      <div id="novedades-slot"></div>
+    </section>
+
+    <!-- Ubicacion -->
+    <section id="ubicacion" class="ubicacion-section">
+      <div id="ubicacion-slot"></div>
+    </section>
+
+    <!-- Profesionales -->
+    <section id="profesionales" class="equipo-section">
+      <div id="profesionales-slot"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <strong>Delta Kinesiología</strong>
+        <span>© 2026</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://icaruccidev.netlify.app/" aria-label="Creador">Created by Icaruccidev</a>
+      </div>
+    </div>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>
