@@ -859,16 +859,20 @@ img{ max-width: 100%; display:block; }
 
   background: rgba(119,190,230,.18);
   border: 1px solid rgba(10,78,109,.12);
+  overflow: hidden;
 }
 
-.service-icon-bubble i{
-  font-size: 26px;
-  color: var(--dk-blue-900);
+.service-icon-bubble img{
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+  transform: scale(1.8);
 }
 
 .service-icon-name{
   font-weight: 900;
-  color: rgba(11,18,32,.82);
+  color: var(--dk-blue-900);
   line-height: 1.2;
   font-size: 14px;
 
