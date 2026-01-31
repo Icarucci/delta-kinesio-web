@@ -46,6 +46,22 @@ img{ max-width: 100%; display:block; }
   border-bottom: 1px solid rgba(10,78,109,.10);
 }
 
+@media (max-width: 820px){
+  .site-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+  }
+
+  body{
+    padding-top: 72px; /* ajustá a la altura del header para el sticky del menu hamburguesa */
+  }
+}
+
+
+
 .header-inner{
   display:flex;
   align-items:center;
@@ -84,6 +100,54 @@ img{ max-width: 100%; display:block; }
 
 .nav-cta:hover{
   background: #08425d;
+}
+
+
+
+/* Botón Pilates Header */
+.nav-mobile-btn{
+  width: 100%;
+  padding: 14px 16px;
+
+  background: linear-gradient(90deg, #0a4e6d, #1279a8);
+  color: #fff;
+  font-weight: 800;
+  font-size: 15px;
+
+  border: none;
+  border-radius: 25px;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+/* Glow animado NUEVO */
+.nav-mobile-btn::after{
+  content: "NUEVO";
+  background: #ffb703;
+  color: #082f44;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+
+  box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.8);
+  animation: nuevoPulse 1.6s infinite;
+}
+
+@keyframes nuevoPulse{
+  0%{
+    box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.9);
+  }
+  70%{
+    box-shadow: 0 0 0 10px rgba(255, 183, 3, 0);
+  }
+  100%{
+    box-shadow: 0 0 0 0 rgba(255, 183, 3, 0);
+  }
 }
 
 /* Hero */
@@ -365,13 +429,13 @@ img{ max-width: 100%; display:block; }
 }
 
 .logos-slider:hover .logos-track{
-  animation-play-state: paused;
+  animation-play-state: running;
 }
 
 .logos-track{
   display: flex;
   width: max-content;
-  animation: scroll-logos 40s linear infinite;
+  animation: scroll-logos 20s linear infinite;
 }
 
 .logos-track img{
@@ -1388,6 +1452,7 @@ img{ max-width: 100%; display:block; }
   position: fixed;
   inset: 0;
   z-index: 1001;
+  margin-top: 70px;
 
   background:
     linear-gradient(

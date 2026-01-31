@@ -42,7 +42,7 @@ if (headerSlot) {
      ========================= */
   const logosTrack = document.getElementById("logosTrack");
   if (logosTrack) {
-    const minWidth = logosTrack.parentElement.offsetWidth * 2;
+    const minWidth = logosTrack.parentElement.offsetWidth * 3;
 
     while (logosTrack.scrollWidth < minWidth) {
       Array.from(logosTrack.children).forEach(el => {
@@ -225,6 +225,23 @@ if (headerSlot) {
   if (closePilatesBtn) {
     closePilatesBtn.addEventListener("click", closePilatesPanel);
   }
+
+  /* =========================
+   Botón "Pilates" del menú mobile
+   ========================= */
+
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".nav-mobile-btn")) {
+      openPilatesPanel();
+
+      // cerrar menú hamburguesa
+      const header = document.querySelector(".site-header");
+      const toggle = document.querySelector(".menu-toggle");
+      header?.classList.remove("is-open");
+      toggle?.setAttribute("aria-expanded", "false");
+      if (toggle) toggle.textContent = "☰";
+    }
+  });
 
     /* =========================
      Badge Pilates (aparece luego de X segundos)
