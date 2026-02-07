@@ -136,6 +136,127 @@ if (headerSlot) {
     }
   }
 
+/* =========================
+   Modal Servicios (con Lazy Load de videos)
+   ========================= */
+const modalRoot = document.getElementById("modal-root");
+
+const loadServiciosModal = async () => {
+  if (!modalRoot) return false;
+  if (modalRoot.dataset.loaded === "1") return true;
+
+  const res = await fetch("partials/servicios-modal.html", { cache: "no-store" });
+  if (!res.ok) throw new Error("No se pudo cargar servicios-modal.html");
+
+  modalRoot.innerHTML = await res.text();
+  modalRoot.dataset.loaded = "1";
+  return true;
+};
+
+const initServiciosModal = async () => {
+  try {
+    const ok = await loadServiciosModal();
+    if (!ok) return;
+
+    const modal = document.getElementById("serviceModal");
+    if (!modal) return;
+
+    const items = Array.from(modal.querySelectorAll(".svc-item"));
+
+    // ✅ Lazy load: carga videos solo del item activo
+    const loadVideosIn = (el) => {
+      if (!el) return;
+      const videos = el.querySelectorAll('video.svc-video[data-src]');
+      videos.forEach((video) => {
+        if (video.dataset.loaded === "1") return;
+
+        const src = video.dataset.src;
+        if (!src) return;
+
+        const source = document.createElement("source");
+        source.src = src;
+        source.type = "video/mp4";
+        video.appendChild(source);
+
+        video.load();
+        video.dataset.loaded = "1";
+
+        const p = video.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      });
+    };
+
+    // ✅ Lazy unload: frena y libera para no consumir memoria/descarga
+    const unloadVideosIn = (el) => {
+      if (!el) return;
+      el.querySelectorAll("video.svc-video").forEach((video) => {
+        try { video.pause(); } catch {}
+
+        video.querySelectorAll("source").forEach((s) => s.remove());
+        video.removeAttribute("src");
+        try { video.load(); } catch {}
+
+        video.dataset.loaded = "0";
+      });
+    };
+
+    const open = (key) => {
+      // 🔥 si cambias de servicio, frena el anterior
+      unloadVideosIn(modal);
+
+      let activeItem = null;
+
+      items.forEach((it) => {
+        const active = it.dataset.service === key;
+        it.classList.toggle("is-active", active);
+        if (active) activeItem = it;
+      });
+
+      if (!activeItem) return;
+
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-lock");
+
+      // 🔥 carga SOLO el video del item activo
+      loadVideosIn(activeItem);
+    };
+
+    const close = () => {
+      // 🔥 frena y libera videos al cerrar
+      unloadVideosIn(modal);
+
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-lock");
+      items.forEach((it) => it.classList.remove("is-active"));
+    };
+
+    document.addEventListener("click", (e) => {
+      const card = e.target.closest(".service-icon-card[data-service]");
+      if (card) {
+        e.preventDefault();
+        open(card.dataset.service);
+        return;
+      }
+      if (e.target.closest("[data-close]")) close();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) close();
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+await initServiciosModal();
+
+
+
+
+
     /* =========================
     Ubicacion
      ========================= */  
